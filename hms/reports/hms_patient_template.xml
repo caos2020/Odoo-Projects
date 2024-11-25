@@ -1,0 +1,221 @@
+
+
+<odoo>
+
+
+<data>
+
+
+<template id="hms_patient_template">
+
+
+<t t-call="web.html_container">
+
+
+<t t-call="web.external_layout">
+
+
+<t t-as="patient" t-foreach="docs">
+
+
+<div class="page">
+
+
+<div class="container my-3">
+
+
+<div class="row">
+
+
+<div class="col-6">
+
+<h1 style="color:red;">Patient status record</h1>
+
+</div>
+
+
+<div class="col-6">
+
+<img height="200px" width="200px" t-att-src="image_data_uri(patient.image)" t-if="patient.image"/>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="container my-3">
+
+
+<div class="row">
+
+
+<div class="col-6">
+
+
+<div>
+Name:
+<span t-if="patient.first_name" t-field="patient.first_name"/>
+
+</div>
+
+
+<div>
+Age:
+<span t-if="patient.age" t-field="patient.age"/>
+
+</div>
+
+
+<div>
+Department:
+<span t-if="patient.dept_id.name" t-field="patient.dept_id.name"/>
+
+</div>
+
+
+<div>
+Doctors:
+
+<t t-as="doctor" t-foreach="patient.doc_ids">
+
+<span t-if="doctor.doc_ids.first_name" t-field="doctor.doc_ids.first_name"/>
+
+</t>
+
+</div>
+
+</div>
+
+
+<div class="col-6">
+
+
+<div>
+email:
+<span t-if="patient.email" t-field="patient.email"/>
+
+</div>
+
+
+<div>
+Blood type:
+<span t-if="patient.blood_type" t-field="patient.blood_type"/>
+
+</div>
+
+
+<div>
+PCR:
+<span t-if="patient.bcr" t-field="patient.bcr"/>
+
+</div>
+
+
+<div>
+State:
+<span t-if="patient.state" t-field="patient.state"/>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="container my-3">
+
+
+<div class="row">
+
+<div class="col-6"/>
+
+<div class="col-6"/>
+
+</div>
+
+</div>
+
+
+<table class="table">
+
+
+<thead>
+
+
+<tr>
+
+<th scope="col">user</th>
+
+<th scope="col">date</th>
+
+<th scope="col">description</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+
+<t t-as="log" t-foreach="patient.log_ids">
+<tr>
+
+
+<t t-if="log.create_uid.name">
+
+
+<td>
+
+<span t-field="log.create_uid.name"/>
+
+</td>
+
+</t>
+
+
+<t t-else="">
+
+<td>Not Found user</td>
+
+</t>
+
+
+<td>
+
+<span t-field="log.create_date"/>
+
+</td>
+
+
+<td>
+
+<span t-field="log.desc"/>
+
+</td>
+
+</tr>
+
+</t>
+
+</tbody>
+
+</table>
+
+</div>
+
+</t>
+
+</t>
+
+</t>
+
+</template>
+
+</data>
+
+</odoo>

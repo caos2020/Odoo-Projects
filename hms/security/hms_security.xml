@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+        <record id="hms_group_cat" model="ir.module.category">
+                    <field name="name">Hms</field>
+
+
+        </record>
+        <record id="user_group" model="res.groups">
+        <field name="name">Hms User</field>
+        </record>
+         <record id="manager_group" model="res.groups">
+        <field name="name">Hms Manager</field>
+        </record>
+<!--        <record id="user_permission_patient" model="ir.model.access">-->
+<!--            <field name="name"></field>-->
+<!--        </record>-->
+<!--        <record id="view created patient only" model="ir.rule">-->
+<!--            <field name="name">View Created Patient Only</field>-->
+<!--            <field name="model_id" ref="model_hospital_patient"/>-->
+<!--            <field name="domain_force">[('create_uid','=',user.id)]</field>-->
+<!--        </record>-->
+<!--        <record id="view_only_created_patients" model="ir.rule">-->
+<!--            <field name="name">View Only Created Patients</field>-->
+<!--            <field name="model_id" ref="model_hospital_patient"/>-->
+<!--            <field name="domain_force">[('create_uid','=',user.id)]</field>-->
+<!--            <field name="groups" eval="[(4, ref('hms.user_group'))]"/>-->
+<!--        </record>-->
+
+<!--               <record id="view_all_created_patients" model="ir.rule">-->
+<!--            <field name="name">View All Created Patients</field>-->
+<!--            <field name="model_id" ref="model_hospital_patient"/>-->
+<!--            <field name="domain_force">[(1,'=',1)]</field>-->
+<!--                   <field name="groups" eval="[(4, ref('hms.manager_group'))]"/>-->
+<!--        </record>-->
+
+    </data>
+</odoo>
+<!--       <field name="implied_ids" eval="[(4,ref('user_group')]"/>-->
+<!--   <record id="view_only_created_patient" model="ir.rule">-->
+<!--                    <field name="name">View Created Patient </field>-->
+<!--                                <field name="model_id" model="hospital_patient"/>-->
+<!--            <field name="domain_force">[('create_uid','=',user.id)]</field>-->
+
+<!--        </record>-->

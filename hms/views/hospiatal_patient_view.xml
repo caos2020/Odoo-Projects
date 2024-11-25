@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="patient_tree" model="ir.ui.view">
+            <field name="name">patient.tree</field>
+            <field name="model">hospital.patient</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="email" string="Patient Email"/>
+                    <field name="birth_date"/>
+                    <field name="age"/>
+                    <field name="cr_ratio"/>
+                    <field name="dept_id"/>
+                    <field name="doc_name" string="Doctors Names"/>
+                </tree></field>
+        </record>
+        <record id="patient_form" model="ir.ui.view">
+            <field name="name">patient.tree</field>
+            <field name="model">hospital.patient</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button class="btn btn-secondary" invisible="state" name="action_state_Undetermined" string="Undetermined" type="object"/>
+                        <button class="btn btn-primary" invisible="state" name="action_state_Good" string="Good" type="object"/>
+                        <button class="btn btn-secondary" invisible="state" name="action_state_Fair" string="Fair" type="object"/>
+                        <button class="btn btn-secondary" invisible="state" name="action_state_Serious" string="Serious" type="object"/>
+                        <field name="state" statusbar_visible="Undetermined,Good,Fair,Serious" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="first_name" required="True" string="Patient First Name"/>
+                                <field name="last_name" required="True" string="Patient Second Name"/>
+                                <field name="birth_date" string="Patient Birth-Date"/>
+                                <field name="age" string="Patient Age"/>
+                                <field name="email" string="Patient Email"/>
+                                <field invisible="age &lt; 50" name="history" string="Patient History"/>
+                                <field name="bcr" string="BCR"/>
+                                <field name="cr_ratio" required="bcr" string="Patient CR Ratio"/>
+                            </group>
+                            <group>
+                                <field name="image" widget="image"/>
+                                <field domain="[('is_opened','=',True)]" name="dept_id" string="Department"/>
+                                <field name="dept_capacity"/>
+                                <field groups="hms.manager_group" name="doc_ids" readonly="not dept_id" string="Doctors" widget="many2many_tags"/>
+                                <field name="address"/>
+                                <field name="log_ids" string="Log History">
+                                    <tree editable="bottom">
+                                        <field name="desc"/>
+                                    </tree></field>
+                            </group>
+                        </group>
+                    </sheet>
+                </form></field>
+        </record>
+        <record id="hospital_patient_action" model="ir.actions.act_window">
+            <field name="name">Patients</field>
+            <field name="res_model">hospital.patient</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="hospital_root_menu" name="Hospital"/>
+        <menuitem action="hospital_patient_action" id="hospital_patient" name="Patient" parent="hospital_root_menu"/>
+    </data>
+</odoo>
